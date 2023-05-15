@@ -24,7 +24,6 @@ function getRecipesFromStorage() {
   // A9. TODO - Complete the functionality as described in this function
   //           header. It is possible in only a single line, but should
   //           be no more than a few lines.
-  return JSON.parse(localStorage.getItem('recipes')) || [];
 }
 
 /**
@@ -36,16 +35,10 @@ function getRecipesFromStorage() {
  */
 function addRecipesToDocument(recipes) {
   // A10. TODO - Get a reference to the <main> element
-  const main = document.querySelector('main');
   // A11. TODO - Loop through each of the recipes in the passed in array,
   //            create a <recipe-card> element for each one, and populate
   //            each <recipe-card> with that recipe data using element.data = ...
   //            Append each element to <main>
-  recipes.forEach(recipe => {
-    let recipeCard = document.createElement('recipe-card');
-    recipeCard.data = recipe;
-    main.appendChild(recipeCard);
-  });
 }
 
 /**
@@ -67,22 +60,10 @@ function saveRecipesToStorage(recipes) {
 function initFormHandler() {
 
   // B2. TODO - Get a reference to the <form> element
-  const form = document.getElementById('new-recipe');
+  
   // B3. TODO - Add an event listener for the 'submit' event, which fires when the
   //            submit button is clicked
-  form.addEventListener('submit', (event) => {
-    let formData = new FormData(form);
-    let recipeObject = {};
-    formData.forEach((value, key) => {
-      recipeObject[key] = value;
-    });
-    let recipeCard = document.createElement('recipe-card');
-    recipeCard.data = recipeObject;
-    document.querySelector('main').append(recipeCard);
-    let rec = getRecipesFromStorage();
-    rec.push(recipeObject);
-    saveRecipesToStorage(rec);
-  });
+
   // Steps B4-B9 will occur inside the event listener from step B3
   // B4. TODO - Create a new FormData object from the <form> element reference above
   // B5. TODO - Create an empty object (I'll refer to this object as recipeObject to
@@ -100,10 +81,5 @@ function initFormHandler() {
   // Steps B12 & B13 will occur inside the event listener from step B11
   // B12. TODO - Clear the local storage
   // B13. TODO - Delete the contents of <main>
-  let clear1 = document.querySelector('.danger');
-  clear1.addEventListener('click', () => {
-    localStorage.clear();
-    document.querySelector('main').innerHTML = '';
-  });
 
 }
